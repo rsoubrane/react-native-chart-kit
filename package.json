@@ -1,0 +1,48 @@
+{
+    "name": "rs-react-native-chart-kit",
+    "version": "1.0.0",
+    "description": "react-native-chart-kit",
+    "homepage": "https://github.com/indiespirit/react-native-chart-kit",
+    "bugs": {
+        "url": "https://github.com/rsoubrane/react-native-chart-kit/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rsoubrane/react-native-chart-kit.git"
+    },
+    "license": "MIT",
+    "author": "",
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "typings": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "biome:lint": "biome lint ./src",
+        "biome:format": "biome format ./src --write",
+        "biome:check": "biome check ./src",
+        "biome:check:apply": "biome check ./src --write",
+        "biome:check:apply:unsafe": "biome check ./src --write --unsafe",
+        "build": "tsc --skipLibCheck",
+        "prepublish": "pnpm build",
+        "prepare": "pnpm build"
+    },
+    "dependencies": {
+        "paths-js": "^0.4.11",
+        "point-in-polygon": "^1.1.0",
+        "react-native-reanimated": "~3.16.7"
+    },
+    "devDependencies": {
+        "@types/react-native": "^0.73.0",
+        "expo": "^52.0.35",
+        "husky": "^9.1.7",
+        "prettier": "^3.5.1",
+        "react": "^19.0.0",
+        "react-native": "^0.78.0",
+        "react-native-flash-message": "^0.4.2",
+        "react-native-svg": "^15.11.1",
+        "typescript": "^5.7.3"
+    },
+    "packageManager": "pnpm@10.4.1"
+}
