@@ -2,6 +2,11 @@
     "name": "rs-react-native-chart-kit",
     "version": "1.0.0",
     "description": "react-native-chart-kit",
+    "keywords": [
+        "react",
+        "react",
+        "native"
+    ],
     "homepage": "https://github.com/indiespirit/react-native-chart-kit",
     "bugs": {
         "url": "https://github.com/rsoubrane/react-native-chart-kit/issues"
@@ -11,10 +16,9 @@
         "url": "git+https://github.com/rsoubrane/react-native-chart-kit.git"
     },
     "license": "MIT",
-    "author": "",
+    "author": "rsoubrane",
     "type": "commonjs",
     "main": "./dist/index.js",
-    "typings": "./dist/index.d.ts",
     "files": [
         "dist"
     ],
@@ -44,5 +48,6 @@
         "react-native-svg": "^15.11.1",
         "typescript": "^5.7.3"
     },
+    "typings": "./dist/index.d.ts",
     "packageManager": "pnpm@10.4.1"
 }
