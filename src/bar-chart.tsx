@@ -34,6 +34,11 @@ export interface BarChartProps extends AbstractChartProps {
 	showValuesOnTopOfBars?: boolean;
 	withCustomBarColorFromData?: boolean;
 	flatColor?: boolean;
+	/**
+	 * Custom width for each bar (in pixels)
+	 * If provided, this will override barPercentage
+	 */
+	barWidth?: number;
 }
 
 type BarChartState = {};
@@ -42,6 +47,19 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
 	getBarPercentage = () => {
 		const { barPercentage = 1 } = this.props.chartConfig;
 		return barPercentage;
+	};
+
+	private getBarWidth = (containerWidth: number, dataLength: number): number => {
+		const { barWidth } = this.props;
+
+		// If custom barWidth is provided, use it (but ensure it doesn't exceed container width)
+		if (typeof barWidth === 'number') {
+			const maxPossibleWidth = containerWidth / dataLength;
+			return Math.min(barWidth, maxPossibleWidth);
+		}
+
+		// Otherwise use existing barPercentage logic
+		return (containerWidth / dataLength) * this.getBarPercentage();
 	};
 
 	renderBars = ({
@@ -56,20 +74,23 @@ class BarChart extends AbstractChart<BarChartProps, BarChartState> {
 		data: number[];
 		withCustomBarColorFromData: boolean;
 	}) => {
-		const baseHeight = this.calcBaseHeight(data, height);
+		const barWidth = this.getBarWidth(width - paddingRight, data.length);
+		const minValue = Math.min(...data);
+		const scale = this.calcScaler(data);
 
 		return data.map((x, i) => {
-			const barHeight = this.calcHeight(x, data, height);
-			const barWidth = 32 * this.getBarPercentage();
+			const barHeight = (height / 4) * 3 * ((x - minValue) / scale);
+			const barCenter = (i * (width - paddingRight)) / data.length + (width - paddingRight) / data.length / 2;
+
 			return (
 				<Rect
-					key={Math.random()}
-					x={paddingRight + (i * (width - paddingRight)) / data.length + barWidth / 2}
-					y={((barHeight > 0 ? baseHeight - barHeight : baseHeight) / 4) * 3 + paddingTop}
-					rx={barRadius}
+					key={`bar-${i}`}
+					x={barCenter - barWidth / 2}
+					y={(height / 4) * 3 + paddingTop - barHeight}
+					rx={barRadius || 0}
 					width={barWidth}
-					height={(Math.abs(barHeight) / 4) * 3}
-					fill={withCustomBarColorFromData ? `url(#customColor_0_${i})` : 'url(#fillShadowGradientFrom)'}
+					height={barHeight}
+					fill={withCustomBarColorFromData ? this.props.data.datasets[0].color(0.2) : this.props.chartConfig.color(0.2)}
 				/>
 			);
 		});

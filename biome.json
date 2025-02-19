@@ -192,7 +192,7 @@
                 "noImportAssign": "error",
                 "noLabelVar": "error",
                 "noMisleadingCharacterClass": "error",
-                "noPrototypeBuiltins": "error",
+                "noPrototypeBuiltins": "off",
                 "noRedeclare": "off",
                 "noSelfCompare": "error",
                 "noShadowRestrictedNames": "error",

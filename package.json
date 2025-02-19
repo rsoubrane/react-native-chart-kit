@@ -1,11 +1,19 @@
 {
-    "name": "rs-react-native-chart-kit",
-    "version": "1.0.0",
+    "name": "rs-react-native-chart",
+    "version": "1.0.1",
     "description": "react-native-chart-kit",
     "keywords": [
         "react",
-        "react",
-        "native"
+        "react native",
+        "chart",
+        "line chart",
+        "bar chart",
+        "pie chart",
+        "progress chart",
+        "contribution chart",
+        "stacked bar chart",
+        "stacked area chart",
+        "bezier line chart"
     ],
     "homepage": "https://github.com/indiespirit/react-native-chart-kit",
     "bugs": {
